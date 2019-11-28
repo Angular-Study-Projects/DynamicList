@@ -11,12 +11,14 @@ import { PersonsService } from './persons.service';
 export class PersonsComponent implements OnInit, OnDestroy {
   personList: string[];
   private personListSubs: Subscription;
+  emptyList: boolean;
 
   constructor(private prsService: PersonsService) {
 
   }
 
   ngOnInit() {
+    this.emptyList = this.prsService.isEmpty;
     this.personList = this.prsService.persons;
     this.personListSubs = this.prsService.personsChanged.subscribe(persons => {
       this.personList = persons;
@@ -25,6 +27,10 @@ export class PersonsComponent implements OnInit, OnDestroy {
 
   onRemovePerson(personName: string) {
     this.prsService.removePerson(personName);
+    if(this.personList == []) {
+      this.emptyList = true;
+    }
+    this.emptyList = this.prsService.isEmpty;
   }
 
   ngOnDestroy() {
