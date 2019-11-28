@@ -1,5 +1,7 @@
-<ul>
-  <li *ngFor="let person of personList" (click)="onRemovePerson(person)">
-    {{ person }}
-  </li>
-</ul>
+<div style="display: inline-table;">
+  <ul style="list-style-type:cjk-ideographic;">
+    <li *ngFor="let person of personList" (click)="onRemovePerson(person)">
+      {{ person }}
+    </li>
+  </ul>
+</div>

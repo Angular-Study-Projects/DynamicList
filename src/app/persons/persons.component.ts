@@ -5,16 +5,15 @@ import { PersonsService } from './persons.service';
 
 @Component({
   selector: 'app-persons',
-  templateUrl: './persons.component.html'
+  templateUrl: './persons.component.html',
+  styleUrls: ['./persons.component.less']
 })
 export class PersonsComponent implements OnInit, OnDestroy {
   personList: string[];
   private personListSubs: Subscription;
-  // private personService: PersonsService;
 
   constructor(private prsService: PersonsService) {
-    // this.personList = prsService.persons;
-    // this.personService = prsService;
+
   }
 
   ngOnInit() {

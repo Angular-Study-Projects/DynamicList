@@ -4,11 +4,13 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PersonsService {
   personsChanged = new Subject<string[]>();
-  persons: string[] = ['Max', 'Manuel', 'Anna'];
+  persons: string[] = [];
 
   addPerson(name: string) {
-    this.persons.push(name);
-    this.personsChanged.next(this.persons);
+    if( name != "" ) {
+      this.persons.push(name);
+      this.personsChanged.next(this.persons);
+    }
   }
 
   removePerson(name: string) {

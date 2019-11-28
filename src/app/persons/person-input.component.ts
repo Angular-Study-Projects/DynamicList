@@ -9,12 +9,27 @@ import { PersonsService } from './persons.service';
 })
 export class PersonInputComponent {
   enteredPersonName = '';
+  invalidInput: boolean;
+  itemCreated: boolean;
 
   constructor(private personsService: PersonsService) {}
 
+  timeout(): void {
+    this.itemCreated = false;
+  }
+
   onCreatePerson() {
-    console.log('Created a person: ' + this.enteredPersonName);
-    this.personsService.addPerson(this.enteredPersonName);
-    this.enteredPersonName = '';
+    if( this.enteredPersonName != '' ){
+      console.log('Created a person: ' + this.enteredPersonName);
+      this.personsService.addPerson(this.enteredPersonName);
+      this.enteredPersonName = '';
+      this.itemCreated = true;
+      this.invalidInput = false;
+    }
+    else {
+      this.itemCreated = false;
+      this.invalidInput = true;
+    }
+    
   }
 }
